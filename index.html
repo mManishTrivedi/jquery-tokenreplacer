@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+
+<head>
+	<!-- Mobile first : Zooming disable by viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- //For improved cross-browser rendering, we use Normalize.css,-->
+	<title>jquery-tokenreplacer</title>
+	<!-- Bootstrap CDN link -->
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+	
+</head>
+
+
+<body >
+
+	<div class="container "  style="margin-top: 5%;">
+		
+		<div class="row">
+		
+<!-- Text Boxes		-->
+			<div class="col-md-6">
+			
+			  <div class="form-group">
+			    <label for="m-to">TO</label>
+			    <input type="text" class="form-control tokenreplacer-container" id="m-to" >
+			  </div>
+			  
+			  <div class="form-group">
+			    <label for="m-bcc">BCC</label>
+			    <input type="text" class="form-control tokenreplacer-container" id="m-bcc" >
+			  </div>
+			  
+			  <div class="form-group">
+			    <label for="m-subject">SUBJECT</label>
+			    <input type="text" class="form-control tokenreplacer-container" id="m-subject" >
+			  </div>
+			  
+			  <div class="form-group">
+			    <label for="m-body">BODY</label>
+			    <textarea  id="m-body" rows="10" class="form-control tokenreplacer-container"></textarea>
+			  </div>
+			  
+			 
+		 	</div>
+		 
+<!-- Token List		 -->
+		 <div class="col-md-6">
+		 
+		 	<div class="form-group">
+		 		
+		 		<label for="m-token-list">Token List</label>
+                                
+                                
+                    <select size="25" class="form-control" id="m-token-list" >
+                    
+                         <optgroup label="Buyer">
+                        	<option value="[[buyer_email]]">Buyer-Email</option>
+                        	<option value="[[buyer_name]]">Buyer Name</option>                                        
+                        </optgroup>
+                        
+                                                                  
+                        <optgroup label="Billing">
+                        	<option value="[[billing_to]]">Billing To</option>
+                        	<option value="[[billing_address]]">Billing Address</option>
+                        	<option value="[[billing_phone]]">Billing Phone</option>
+                        	<option value="[[billing_zip_code]]">Billing Zip-code</option>
+                        	<option value="[[billing_country]]">Billing Country</option>
+                        	<option value="[[billing_state]]">Billing State</option>
+                        	<option value="[[billing_city]]">Billing State</option>                                        
+                       </optgroup>
+                       
+                       <optgroup label="Shipping">
+                        	<option value="[[shipping_to]]">Shipping To</option>
+                        	<option value="[[shipping_address]]">Shipping Address</option>
+                        	<option value="[[shipping_phone]]">Shipping Phone</option>
+                        	<option value="[[shipping_zip_code]]">Shipping Zip-code</option>
+                        	<option value="[[shipping_country]]">Shipping Country</option>
+                        	<option value="[[shipping_state]]">Shipping State</option>
+                        	<option value="[[shipping_city]]">Shipping State</option>                                        
+                       </optgroup>
+                       
+                       <optgroup label="Cart">
+                        	<option value="[[cart_products]]">Product-List</option>
+                        	<option value="[[cart_total]]">Cart Total</option>
+                        	<option value="[[cart_created_on]]">Created Date</option>
+                        	<option value="[[cart_paid_on]]">Paid Date</option>
+                        	<option value="[[cart_delivery_on]]">Delivery Date</option>                        	                                       
+                       </optgroup>
+
+                    </select>
+                
+                	<span><small><i> Double click to add any token.</i></small></span>
+                	
+            </div>
+		 
+		 </div>
+		   
+	</div>
+		
+	</div>	
+
+</body>
+
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+<script src="jquery-tokenreplacer.js"></script>
+<script>
+	(function($) {
+		
+                // keyup mousedown mousemove mouseup
+                // bind element
+               $('.tokenreplacer-container').on("input click", function () {
+                   
+            	   $().tokenreplacer.set_cursor_position($(this));  
+               });
+               
+               // default element bind
+               $().tokenreplacer.set_cursor_position($('#m-to'));
+
+               //ondblclick="tokenreplacer.insert_at_cursor(this.value);"
+
+				$('#m-token-list').dblclick(function () {
+                   $().tokenreplacer.insert_at_cursor($(this).val());
+            	   
+               });
+               
+                
+	})(jQuery);
+	
+</script>
+
+</html>
+
+
